@@ -6,27 +6,75 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.22.2"></script>
 </head>
 <body>
+  <h1>  
+    Data Visualization Assingment 3
+  </h1>
+  <h2 id="Instruction">
+    This is an interactive plot. You can select the points in the scatter plot to see the corresponding barplot.
+  </h2>
+  <div id="title">
+  </div>
   <div id="vis"/>
   <script>
-    const spec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    const spec = {"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 2000,
+  "height": 2000,
   "data": {"url": "https://raw.githubusercontent.com/jimmystereo/building_visualization/main/bd_data.csv"},
-  "hconcat": [
+  "vconcat": [
     {
-      "mark": "point",
+  "layer": [
+    
+    {"mark": {"type":"bar","cornerRadiusTopLeft": 4, "cornerRadiusTopRight": 4},
       "encoding": {
-        "x": {"field": "Year Acquired", "type": "temporal"},
-        "y": {"field": "Year Constructed", "type": "temporal"},
-        "color": {"value": "grey", "condition": {"param": "myfirstparam"}}
-      }
-    },    {
-      "mark": "point",
+        "x": {"field": "Agency Name", "type": "nominal"},
+        "y": {"aggregate": "sum", "field": "Square Footage"},
+        "color": {"value": "gray"}
+
+        }     
+    },
+    {"transform": 
+    [
+      {"filter": {"selection": "brush"}}
+    ],
+      "mark": {"type":"bar","cornerRadiusTopLeft": 4, "cornerRadiusTopRight": 4},
       "encoding": {
-        "x": {"field": "Year Acquired", "type": "temporal"},
-        "y": {"field": "Year Constructed", "type": "temporal"},
-        "color": {"value": "grey", "condition": {"param": "myfirstparam"}}
-      }
+        "x": {"field": "Agency Name", 
+        "type": "nominal"},
+        "y": {"aggregate": "sum", "field": "Square Footage"},
+        "color": {"value": "#FFD64B"}     }
     }
+    ]
+    }
+
+    ,
+    {"layer":[{ 
+       "mark": "point",
+      "encoding": {
+        "x": {"field": "Year Acquired", "type": "quantitative",
+        "scale": {"domain": [1700,2020]}},
+        "y": {"field": "Year Constructed", "type": "quantitative",
+        "scale": {"domain": [1700,2020]}},
+        "color": {"value": "gray"}
+
+    }
+    },
+      { 
+      "selection": {
+      "brush": {"type": "interval"}
+    },"transform": 
+    [
+      {"filter": {"selection": "brush"}}
+    ],
+       "mark": "point",
+      "encoding": {
+        "x": {"field": "Year Acquired", "type": "quantitative",
+        "scale": {"domain": [1700,2020]}},
+        "y": {"field": "Year Constructed", "type": "quantitative",
+        "scale": {"domain": [1700,2020]}},
+        "color": {"value": "#FFD64B"} ,
+
+    }
+    }]}
   ],
   "config": {}
 };

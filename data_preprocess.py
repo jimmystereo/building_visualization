@@ -13,8 +13,13 @@ df
 df['']
 plt.scatter(df['Year Acquired'], df['Year Constructed'])
 
-df['Year Acquired'].dtype
 
+df['Year Acquired'].min()
+
+df['Year Acquired'].max()
+df['Year Constructed'].min()
+
+df['Year Constructed'].max()
 
 
 df2 = pd.read_csv("bd_data.csv")
