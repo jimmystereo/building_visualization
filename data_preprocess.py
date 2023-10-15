@@ -1,8 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 df = pd.read_csv('building_inventory.csv', na_values = {'Year Acquired':0,'Year Constructed':0})
-# df['Year Acquired'] = pd.to_datetime(df['Year Acquired'] )
-# df['Year Constructed']= pd.to_datetime(df['Year Constructed'])
+df['Year Acquired'] = df['Year Acquired'].apply(lambda x: str(x))
+df['Year Constructed']= df['Year Constructed'].apply(lambda x: str(x))
 df.columns
 df = df.dropna(subset=['Year Acquired', 'Year Constructed'])
 df
