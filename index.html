@@ -20,13 +20,14 @@
     "width": 2000,
   "height": 2000,
   "data": {"url": "https://raw.githubusercontent.com/jimmystereo/building_visualization/main/bd_data.csv"},
-  "vconcat": [
+  "hconcat": [
     {
   "layer": [
     
     {"mark": {"type":"bar","cornerRadiusTopLeft": 4, "cornerRadiusTopRight": 4},
       "encoding": {
-        "x": {"field": "Agency Name", "type": "nominal"},
+        "x": {"field": "Agency Name", "type": "nominal",
+        "sort": {"op": "sum", "field": "Square Footage"}},
         "y": {"aggregate": "sum", "field": "Square Footage"},
         "color": {"value": "gray"}
 
@@ -39,9 +40,11 @@
       "mark": {"type":"bar","cornerRadiusTopLeft": 4, "cornerRadiusTopRight": 4},
       "encoding": {
         "x": {"field": "Agency Name", 
-        "type": "nominal"},
+        "type": "nominal",
+        "sort": {"op": "sum", "field": "Square Footage"}
+      },
         "y": {"aggregate": "sum", "field": "Square Footage"},
-        "color": {"value": "#FFD64B"}     }
+        "color": {"value": "#FDD037"}     }
     }
     ]
     }
@@ -71,7 +74,7 @@
         "scale": {"domain": [1700,2020]}},
         "y": {"field": "Year Constructed", "type": "quantitative",
         "scale": {"domain": [1700,2020]}},
-        "color": {"value": "#FFD64B"} ,
+        "color": {"value": "#FDD037"} ,
 
     }
     }]}
