@@ -5,6 +5,7 @@ df = pd.read_csv('building_inventory.csv', na_values = {'Year Acquired':0,'Year 
 # df['Year Constructed']= pd.to_datetime(df['Year Constructed'])
 df.columns
 df = df.dropna(subset=['Year Acquired', 'Year Constructed'])
+df
 df.to_csv('bd_data.csv',encoding='utf-8-sig', index=False)
 df
 df['']
@@ -13,3 +14,6 @@ plt.scatter(df['Year Acquired'], df['Year Constructed'])
 df['Year Acquired'].dtype
 
 
+
+df2 = pd.read_csv("bd_data.csv")
+df2
